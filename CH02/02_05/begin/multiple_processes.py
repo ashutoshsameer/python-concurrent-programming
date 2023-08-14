@@ -3,24 +3,27 @@
 
 import os
 import threading
+import multiprocessing as mp
 
 # a simple function that wastes CPU cycles forever
 def cpu_waster():
     while True:
         pass
 
-# display information about this process
-print('\n  Process ID: ', os.getpid())
-print('Thread Count: ', threading.active_count())
-for thread in threading.enumerate():
-    print(thread)
+print(f"{__name__}")
+if __name__ == "__main__":
+    # display information about this process
+    print('\n  Process ID: ', os.getpid())
+    print('Thread Count: ', threading.active_count())
+    for thread in threading.enumerate():
+        print(thread)
 
-print('\nStarting 12 CPU Wasters...')
-for i in range(12):
-    threading.Thread(target=cpu_waster).start()
+    print('\nStarting 12 CPU Wasters...')
+    for i in range(12):
+        mp.Process(target=cpu_waster).start()
 
-# display information about this process
-print('\n  Process ID: ', os.getpid())
-print('Thread Count: ', threading.active_count())
-for thread in threading.enumerate():
-    print(thread)
+    # display information about this process
+    print('\n  Process ID: ', os.getpid())
+    print('Thread Count: ', threading.active_count())
+    for thread in threading.enumerate():
+        print(thread)
