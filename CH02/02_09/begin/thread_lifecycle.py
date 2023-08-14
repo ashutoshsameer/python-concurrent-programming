@@ -17,14 +17,18 @@ class ChefOlivia(threading.Thread):
 if __name__ == '__main__':
     print("Barron started & requesting Olivia's help.")
     olivia = ChefOlivia()
+    print(" Olivia alive?", olivia.is_alive())
 
     print('Barron tells Olivia to start.')
     olivia.start()
+    print(" Olivia alive?", olivia.is_alive())
 
     print('Barron continues cooking soup.')
     time.sleep(0.5)
+    print(" Olivia alive?", olivia.is_alive())
 
     print('Barron patiently waits for Olivia to finish and join...')
     olivia.join()
+    print(" Olivia alive?", olivia.is_alive())
 
     print('Barron and Olivia are both done!')
