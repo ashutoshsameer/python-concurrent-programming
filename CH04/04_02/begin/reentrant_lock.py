@@ -5,7 +5,7 @@ import threading
 
 garlic_count = 0
 potato_count = 0
-pencil = threading.Lock()
+pencil = threading.RLock()
 
 def add_garlic():
     global garlic_count
@@ -17,6 +17,7 @@ def add_potato():
     global potato_count
     pencil.acquire()
     potato_count += 1
+    add_garlic()
     pencil.release()
 
 def shopper():
