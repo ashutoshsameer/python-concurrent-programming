@@ -12,8 +12,8 @@ def shopper():
     name = threading.current_thread().getName()
     items_to_add = 0
     while items_on_notepad <= 20:
-        if items_to_add: # add item(s) to shared items_on_notepad
-            pencil.acquire()
+        if items_to_add and pencil.acquire(blocking=False): # add item(s) to shared items_on_notepad
+            
             items_on_notepad += items_to_add
             print(name, 'added', items_to_add, 'item(s) to notepad.')
             items_to_add = 0
