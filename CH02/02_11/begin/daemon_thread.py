@@ -11,6 +11,7 @@ def kitchen_cleaner():
 
 if __name__ == '__main__':
     olivia = threading.Thread(target=kitchen_cleaner)
+    olivia.daemon = True
     olivia.start()
 
     print('Barron is cooking...')
