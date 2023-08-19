@@ -6,7 +6,7 @@ import threading
 chopstick_a = threading.Lock()
 chopstick_b = threading.Lock()
 chopstick_c = threading.Lock()
-sushi_count = 5
+sushi_count = 500
 
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
@@ -24,4 +24,4 @@ def philosopher(name, first_chopstick, second_chopstick):
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()
     threading.Thread(target=philosopher, args=('Olivia', chopstick_b, chopstick_c)).start()
-    threading.Thread(target=philosopher, args=('Steve', chopstick_c, chopstick_a)).start()
+    threading.Thread(target=philosopher, args=('Steve', chopstick_a, chopstick_c)).start()
