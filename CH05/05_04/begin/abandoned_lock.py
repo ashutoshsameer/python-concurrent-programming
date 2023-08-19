@@ -11,15 +11,14 @@ sushi_count = 500
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
     while sushi_count > 0: # eat sushi until it's all gone
-        first_chopstick.acquire()
-        second_chopstick.acquire()
+        with first_chopstick:
+            with second_chopstick:
+                if sushi_count > 0:
+                    sushi_count -= 1
+                    print(name, 'took a piece! Sushi remaining:', sushi_count)
 
-        if sushi_count > 0:
-            sushi_count -= 1
-            print(name, 'took a piece! Sushi remaining:', sushi_count)
-
-        second_chopstick.release()
-        first_chopstick.release()
+                if sushi_count == 10:
+                    print(1/0) # to intentionally crash
 
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()
